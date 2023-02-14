@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@faker-js/faker': ^7.6.0
   '@next/font': 13.1.6
   '@prisma/client': ^4.10.1
   '@types/node': 18.13.0
@@ -28,6 +29,7 @@ dependencies:
   typescript: 4.9.5
 
 devDependencies:
+  '@faker-js/faker': 7.6.0
   prisma: 4.10.1
 
 packages:
@@ -55,6 +57,11 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: false
+
+  /@faker-js/faker/7.6.0:
+    resolution: {integrity: sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==}
+    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
+    dev: true
 
   /@humanwhocodes/config-array/0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
