@@ -1,3 +1,4 @@
+import { Header } from '~/src/components/Layout/Header';
 import './globals.css';
 import Providers from './providers';
 
@@ -10,7 +11,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       */}
       <head />
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          {/* @ts-expect-error Server Component */}
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );
