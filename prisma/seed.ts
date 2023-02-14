@@ -9,7 +9,7 @@ const main = async () => {
   for (let i = 0; i < 10; i++) {
     const user = {
       username: faker.internet.userName(),
-      avatarUrl: faker.image.avatar(),
+      image: faker.image.avatar(),
       displayName: faker.name.firstName(),
       bio: faker.lorem.paragraph(),
       location: faker.address.city(),
