@@ -1,23 +1,34 @@
+import Link from 'next/link';
 import { getSession } from '~/src/lib/auth/nextAuth';
-import { LoginButton, LogoutButton } from './AuthButtons';
+import { SignInButton, SignOutButton } from './AuthButtons';
 
-export const Header = async () => {
+export const Header = () => {
+  return (
+    <header className="flex items-center justify-between gap-2 border-b border-b-gray-700 p-2">
+      <Link href="/" className="text-2xl font-bold text-blue-300">
+        Twitter
+      </Link>
+      {/* @ts-expect-error Server Component */}
+      <User />
+    </header>
+  );
+};
+
+const User = async () => {
   const session = await getSession();
-  console.log({ session });
+
+  const user = session?.user;
+
+  if (!user) {
+    return <SignInButton />;
+  }
 
   return (
-    <header>
-      <h4>Twitter</h4>
-      {session?.user ? (
-        <div>
-          {session.user.name}
-          <LogoutButton />
-        </div>
-      ) : (
-        <div>
-          <LoginButton />
-        </div>
-      )}
-    </header>
+    <div className="flex items-center gap-2">
+      <Link href={`/users/${user.id}`} className="text-xs text-neutral-300">
+        {user.email}
+      </Link>
+      <SignOutButton />
+    </div>
   );
 };
