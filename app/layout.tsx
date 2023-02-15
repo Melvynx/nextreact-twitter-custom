@@ -1,8 +1,9 @@
+import type { PropsWithChildren } from 'react';
 import { Layout } from '~/src/components/layout/Layout';
 import './globals.css';
 import Providers from './providers';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <head />

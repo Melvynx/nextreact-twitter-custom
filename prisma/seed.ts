@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 const main = async () => {
   // loop for 10 times
   const usersPromises = [];
-  for (let i = 0; i < 10; i++) {
+  for (let index = 0; index < 10; index++) {
     const user = {
       username: faker.internet.userName(),
       image: faker.image.avatar(),
@@ -26,7 +26,7 @@ const main = async () => {
 
   // loop for 100 times
   const tweetsPromises = [];
-  for (let i = 0; i < 100; i++) {
+  for (let index = 0; index < 100; index++) {
     const randomUserIndex = faker.datatype.number({
       min: 0,
       max: users.length - 1,
@@ -55,12 +55,13 @@ main()
   .then(async () => {
     await prisma.$disconnect();
   })
-
-  .catch(async (e) => {
+  // eslint-disable-next-line unicorn/prefer-top-level-await
+  .catch(async (error) => {
     // eslint-disable-next-line no-console
-    console.error(e);
+    console.error(error);
 
     await prisma.$disconnect();
 
+    // eslint-disable-next-line unicorn/no-process-exit
     process.exit(1);
   });
