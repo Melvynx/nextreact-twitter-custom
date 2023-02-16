@@ -1,9 +1,14 @@
-import type { DefaultUser } from 'next-auth';
+/* eslint-disable @typescript-eslint/consistent-type-definitions */
+import type { DefaultSession } from 'next-auth';
 
 declare module 'next-auth' {
-  type Session = {
-    user?: DefaultUser & {
-      id: string;
+  /**
+   * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
+   */
+  interface Session {
+    user: DefaultSession['user'] & {
+      /** The user's postal address. */
+      id?: string;
     };
   }
 }
