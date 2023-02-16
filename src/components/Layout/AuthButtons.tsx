@@ -1,7 +1,6 @@
 'use client';
 
 import { signIn, signOut } from 'next-auth/react';
-import { env } from '~/src/env/client';
 
 export const SignInButton = () => {
   return (
@@ -12,7 +11,6 @@ export const SignInButton = () => {
 };
 
 export const SignOutButton = () => {
-  console.log({ a: env.GITHUB_ID });
   return (
     <button onClick={async () => signOut()} className="text-blue-300">
       Logout
