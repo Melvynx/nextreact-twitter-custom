@@ -4,7 +4,7 @@ import { TweetsTl } from './TweetsTl';
 
 export default async function MainPage() {
   // 🦁 Remplace cette ligne par un `getTweets` en utilisant le userId qui provient de la session !
-  const defaultTweets = [];
+  const defaultTweets: any[] = [];
 
   return (
     <TwitterLayout>
