@@ -2,7 +2,6 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import type { PropsWithChildren } from 'react';
-import { Fragment } from 'react';
 import { formatDate } from '~/src/lib/date/formatDate';
 import type { TlTweet } from '~/src/lib/scheme/tweet';
 
@@ -12,8 +11,10 @@ type TweetProps = {
 
 export const Tweet = ({ tweet, children }: PropsWithChildren<TweetProps>) => {
   return (
-    <TweetBase tweetId={tweet.id} user={tweet.user} createdAt={tweet.createdAt}>
-      <p className="text-sm text-gray-300">{tweet.content}</p>
+    <TweetBase user={tweet.user} createdAt={tweet.createdAt}>
+      <Link href={`/tweets/${tweet.id}`}>
+        <p className="text-sm text-gray-300">{tweet.content}</p>
+      </Link>
       <div className="flex flex-row gap-6">{children}</div>
     </TweetBase>
   );
@@ -22,7 +23,6 @@ export const Tweet = ({ tweet, children }: PropsWithChildren<TweetProps>) => {
 type TweetBaseProps = {
   user: TlTweet['user'];
   createdAt?: string;
-  tweetId?: string;
   className?: string;
 };
 
@@ -30,11 +30,8 @@ export const TweetBase = ({
   user,
   createdAt,
   children,
-  tweetId,
   className,
 }: PropsWithChildren<TweetBaseProps>) => {
-  const LinkComponent = tweetId ? Link : Fragment;
-  const props = tweetId ? { href: `/tweets/${tweetId}` } : ({} as never);
   return (
     <div className={clsx('flex w-full flex-row items-start p-4', className)}>
       <img src={user.image ?? ''} alt="user" className="h-10 w-10 rounded-full" />
@@ -52,7 +49,7 @@ export const TweetBase = ({
           </div>
         </Link>
 
-        <LinkComponent {...props}>{children}</LinkComponent>
+        {children}
       </div>
     </div>
   );
