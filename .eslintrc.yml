@@ -119,3 +119,6 @@ rules:
   unicorn/prevent-abbreviations: 0
 
   unicorn/no-null: 0
+
+  react/react-in-jsx-scope: 0
+  import/no-unresolved: 0

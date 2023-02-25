@@ -1,14 +1,16 @@
 import { AddTweet } from '~/src/components/tweets/AddTweet';
 import { TwitterLayout } from '~/src/components/tweets/TwitterLayout';
+import { getTweets } from '~/src/db/tweets';
+import { getSession } from '~/src/lib/auth/nextAuth';
 import { TweetsTl } from './TweetsTl';
 
 export default async function MainPage() {
-  // 🦁 Remplace cette ligne par un `getTweets` en utilisant le userId qui provient de la session !
-  const defaultTweets: any[] = [];
+  const session = await getSession();
+  const defaultTweets = await getTweets(session?.user.id, 0);
 
   return (
     <TwitterLayout>
-      <AddTweet />
+      <AddTweet session={session} />
       <TweetsTl defaultTweets={{ tweets: defaultTweets, nextPage: 1 }} />
     </TwitterLayout>
   );

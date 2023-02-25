@@ -1,15 +1,14 @@
 'use client';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useSession } from 'next-auth/react';
+import type { Session } from 'next-auth';
 import { client } from '~/src/lib/client/client';
 import { tweetKeys } from '~/src/lib/query/tweetQuery';
 import { AddTweetForm } from './AddTweetForm';
 
-type AddTweetProps = { tweetId?: string };
+type AddTweetProps = { tweetId?: string; session?: Session | null };
 
-export const AddTweet = ({ tweetId }: AddTweetProps) => {
-  const session = useSession();
+export const AddTweet = ({ tweetId, session }: AddTweetProps) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation(
@@ -25,7 +24,7 @@ export const AddTweet = ({ tweetId }: AddTweetProps) => {
     }
   );
 
-  if (session.status !== 'authenticated') {
+  if (!session?.user) {
     return <p>Please login to add tweet</p>;
   }
 
@@ -36,7 +35,7 @@ export const AddTweet = ({ tweetId }: AddTweetProps) => {
   return (
     <AddTweetForm
       disabled={mutation.isLoading}
-      user={session.data.user}
+      user={session.user}
       onSubmit={handleSubmit}
     />
   );
