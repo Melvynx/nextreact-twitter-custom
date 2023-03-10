@@ -8,10 +8,7 @@ export const serverSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']),
 });
 
-export const clientSchema = z.object({
-  NEXT_PUBLIC_TEST_ENV: z.string(),
-  GITHUB_ID: z.string(),
-});
+export const clientSchema = z.object({});
 
 type ClientScheme = {
   [k in keyof z.infer<typeof clientSchema>]:
@@ -19,7 +16,4 @@ type ClientScheme = {
     | undefined;
 };
 
-export const clientEnv: ClientScheme = {
-  NEXT_PUBLIC_TEST_ENV: process.env.NEXT_PUBLIC_TEST_ENV,
-  GITHUB_ID: process.env.GITHUB_ID,
-};
+export const clientEnv: ClientScheme = {};
