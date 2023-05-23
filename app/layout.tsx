@@ -1,13 +1,13 @@
 import type { PropsWithChildren } from 'react';
 import { Layout } from '~/src/components/layout/Layout';
 import './globals.css';
-import Providers from './providers';
+import { Providers } from './providers';
 
-export default function RootLayout({ children }: PropsWithChildren) {
+export default function MainLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <head />
-      <body className="bg-gray-900 text-white">
+      <body>
         <Providers>
           <Layout>{children}</Layout>
         </Providers>
